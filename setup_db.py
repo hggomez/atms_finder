@@ -1,4 +1,4 @@
 import sqlite3
-connection = sqlite3.connect('cajeros-automaticos.db')
+connection = sqlite3.connect('atms.db')
 cursor = connection.cursor()
-cursor.execute("alter table 'cajeros-automaticos' add column 'extracciones_restantes' int default 1000;")
+cursor.execute("alter table 'atms' add column 'remaining_extractions' int default 1000;")

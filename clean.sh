@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 rm -r atms_env
-rm cajeros-automaticos.csv
-rm cajeros-automaticos.db
+rm atms.csv
+rm atms.db
