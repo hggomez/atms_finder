@@ -30,7 +30,7 @@ class ATM_finder(object):
     return sqlite3.connect('atms.db')
  
   def atm_refiller(self):
-      schedule.every().day.at('21:51').do(self.refill_atms)
+      schedule.every().day.at('9:00').do(self.refill_atms)
       while True:
         schedule.run_pending()
         sleep(1)
