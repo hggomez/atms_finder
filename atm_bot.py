@@ -2,9 +2,10 @@ from telegram import KeyboardButton, ReplyKeyboardMarkup
 from telegram.ext import CommandHandler, MessageHandler, Updater, Filters
 from atm_finder import ATM_finder
 from urllib.request import urlopen
+from os import environ
 
 # Bot's handle in telegram is jampp_atmfinderbot
-updater = Updater(token='862716685:AAGRwi88qOm8eOrkVKjgcEYQOsnwy7hQhuI')
+updater = Updater(token=environ["ATM_BOT_TOKEN"])
 dispatcher = updater.dispatcher
 atm_finder = ATM_finder()
 
@@ -30,7 +31,7 @@ def build_map_url(user_location, atms):
   additional_dots = "" 
   for atm in atms:
     additional_dots = additional_dots + "&markers=color:red%7Clabel:%7C{0},{1}".format(atm.lat, atm.long)
-  key = "&key=AIzaSyDP827zHnIce50b1GTB8QPrHOUBFwcsGyw"
+  key = "&key=" + environ["ATM_GOOGLE_MAPS_TOKEN"]
   url = url + additional_dots + key
   print(url)
   return url
