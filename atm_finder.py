@@ -40,6 +40,14 @@ class ATM_finder(object):
       db_connection = sqlite3.connect('atms.db', timeout=30)
       db_connection.execute("update 'atms' set remaining_extractions = 1000;")
       db_connection.commit()
+      cursor = db_connection.cursor()
+      cursor.execute("select id, lat, long from 'atms' where network = 'LINK' and remaining_extractions != 0;")
+      self.finder["LINK"] = kdtree.create([Place(*atm) for atm in cursor.fetchall()])
+      cursor.close()
+      cursor = db_connection.cursor()
+      cursor.execute("select id, lat, long from 'atms' where network = 'BANELCO' and remaining_extractions != 0;")
+      self.finder["BANELCO"] = kdtree.create([Place(*atm) for atm in cursor.fetchall()])
+      cursor.close()
       db_connection.close()
   
   def random_atm(self, atms):
