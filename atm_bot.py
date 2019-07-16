@@ -4,7 +4,6 @@ from atm_finder import ATM_finder
 from urllib.request import urlopen
 from os import environ
 
-# Bot's handle in telegram is jampp_atmfinderbot
 updater = Updater(token=environ["ATM_BOT_TOKEN"])
 dispatcher = updater.dispatcher
 atm_finder = ATM_finder()
